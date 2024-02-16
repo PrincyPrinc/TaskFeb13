@@ -1,7 +1,25 @@
 import 'package:flutter/material.dart';
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  late List<Widget> items;
+  int selectedIndex = 0;
+
+  @override
+  void initState() {
+    items = [
+      const SpecialForYouWidget(),
+      const SpecialForYouWidget(),
+      const SpecialForYouWidget(),
+    ];
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -166,229 +184,51 @@ class MyHomePage extends StatelessWidget {
                         )
                       ],
                     ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(children: [
-                        Container(
-                          margin: const EdgeInsets.only(
-                              left: 30, right: 20, top: 0, bottom: 0),
-                          height: size.height / 4.2,
-                          width: size.width / 7 * 5,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            image: const DecorationImage(
-                                image: AssetImage('Assets/h2.png'),
-                                fit: BoxFit.cover),
+                    Column(
+                      children: [
+                        SizedBox(
+                          height: size.height / 4,
+                          child: PageView.builder(
+                            itemCount: items.length,
+                            onPageChanged: (index) {
+                              setState(() {
+                                selectedIndex = index;
+                              });
+                            },
+                            itemBuilder: (context, index) {
+                              return items[selectedIndex];
+                            },
                           ),
-                          child: Row(children: [
-                            Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(
-                                          10), // Set the radius to 10
-                                    ),
-                                    child: const Text('Limited Stock',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                        )),
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  const Text('Get Special Offer',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold)),
-                                  Container(
-                                    child: const Wrap(
-                                      children: [
-                                        Text('Up To ',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20)),
-                                        Text(
-                                          "40",
-                                          style: TextStyle(
-                                              fontSize: 25,
-                                              color: Colors.white),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Container(
-                                        child: const Text(
-                                          'sngdhgfjhhasg shfhd hdfj',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.white),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 90,
-                                      ),
-                                      Container(
-                                        child: ElevatedButton(
-                                          onPressed: () {
-                                            // Button action
-                                          },
-                                          style: ButtonStyle(
-                                            backgroundColor:
-                                                MaterialStateProperty.all<
-                                                    Color>(Colors.yellow),
-                                            fixedSize:
-                                                MaterialStateProperty.all<Size>(
-                                                    const Size(45, 15)),
-                                            foregroundColor:
-                                                MaterialStateProperty.all<
-                                                    Color>(Colors.black),
-                                            textStyle: MaterialStateProperty
-                                                .all<TextStyle>(
-                                              const TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            padding: MaterialStateProperty.all<
-                                                EdgeInsets>(
-                                              const EdgeInsets.symmetric(
-                                                  horizontal: 10, vertical: 10),
-                                            ),
-                                            shape: MaterialStateProperty.all<
-                                                RoundedRectangleBorder>(
-                                              RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20)),
-                                            ),
-                                          ),
-                                          child: const Text('claimm'),
-                                        ),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                            )
-                          ]),
                         ),
-                        Container(
-                          margin: const EdgeInsets.only(
-                              left: 0, right: 50, top: 0, bottom: 0),
-                          height: size.height / 4.0,
-                          width: size.width / 7 * 5,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            image: const DecorationImage(
-                                image: AssetImage('Assets/h2.png'),
-                                fit: BoxFit.cover),
-                          ),
-                          child: Row(children: [
-                            Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(
-                                          10), // Set the radius to 10
-                                    ),
-                                    child: const Text('Limited Stock',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                        )),
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  const Text('Get Special Offer',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold)),
-                                  Container(
-                                    child: const Wrap(
-                                      children: [
-                                        Text('Up To ',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20)),
-                                        Text(
-                                          "40",
-                                          style: TextStyle(
-                                              fontSize: 25,
-                                              color: Colors.white),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Container(
-                                        child: const Text(
-                                          'sngdhgfjhhasg shfhd hdfj',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.white),
-                                        ),
+                        const SizedBox(height: 15),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ...List.generate(
+                                items.length,
+                                (index) => Padding(
+                                      padding: const EdgeInsets.all(3.0),
+                                      child: CircleAvatar(
+                                        backgroundColor: selectedIndex == index
+                                            ? Colors.green[800]
+                                            : Colors.grey.withOpacity(0.3),
+                                        radius: 4,
                                       ),
-                                      const SizedBox(
-                                        width: 90,
-                                      ),
-                                      Container(
-                                        child: ElevatedButton(
-                                          onPressed: () {
-                                            // Button action
-                                          },
-                                          style: ButtonStyle(
-                                            backgroundColor:
-                                                MaterialStateProperty.all<
-                                                    Color>(Colors.yellow),
-                                            fixedSize:
-                                                MaterialStateProperty.all<Size>(
-                                                    const Size(45, 15)),
-                                            foregroundColor:
-                                                MaterialStateProperty.all<
-                                                    Color>(Colors.black),
-                                            textStyle: MaterialStateProperty
-                                                .all<TextStyle>(
-                                              const TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            padding: MaterialStateProperty.all<
-                                                EdgeInsets>(
-                                              const EdgeInsets.symmetric(
-                                                  horizontal: 10, vertical: 10),
-                                            ),
-                                            shape: MaterialStateProperty.all<
-                                                RoundedRectangleBorder>(
-                                              RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20)),
-                                            ),
-                                          ),
-                                          child: const Text('claimm'),
-                                        ),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                            )
-                          ]),
-                        ),
-                      ]),
+                                    )).toList(),
+                          ],
+                        )
+                      ],
                     ),
+                    // const SingleChildScrollView(
+                    //   scrollDirection: Axis.horizontal,
+                    //   child: Row(
+                    //     children: [
+                    //       SpecialForYouWidget(),
+                    //       SpecialForYouWidget(),
+                    //       SpecialForYouWidget(),
+                    //     ],
+                    //   ),
+                    // ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -423,7 +263,7 @@ class MyHomePage extends StatelessWidget {
                                   width: 60,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(100),
-                                      color: const Color(0x000000)
+                                      color: const Color(0x00000000)
                                           .withOpacity(0.1)),
                                   child: const Icon(
                                     Icons.cleaning_services,
@@ -448,7 +288,8 @@ class MyHomePage extends StatelessWidget {
                                 width: 60,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(100),
-                                    color: Color(0x000000).withOpacity(0.1)),
+                                    color: const Color(0x00000000)
+                                        .withOpacity(0.1)),
                                 child: const Icon(
                                   Icons.home_repair_service,
                                   size: 40,
@@ -471,8 +312,8 @@ class MyHomePage extends StatelessWidget {
                                 width: 60,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(100),
-                                    color:
-                                        const Color(0x000000).withOpacity(0.1)),
+                                    color: const Color(0x00000000)
+                                        .withOpacity(0.1)),
                                 child: const Icon(
                                   Icons.plumbing,
                                   size: 40,
@@ -495,30 +336,8 @@ class MyHomePage extends StatelessWidget {
                                 width: 60,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(100),
-                                    color: Color(0x000000).withOpacity(0.1)),
-                                child: const Icon(
-                                  Icons.emoji_transportation,
-                                  size: 40,
-                                  color: const Color.fromARGB(255, 42, 113, 44),
-                                ),
-                              ),
-                              const Text(
-                                "Shifting",
-                                style: TextStyle(fontWeight: FontWeight.w600),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Column(
-                            children: [
-                              Container(
-                                height: 60,
-                                width: 60,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    color: Color(0x000000).withOpacity(0.1)),
+                                    color: const Color(0x00000000)
+                                        .withOpacity(0.1)),
                                 child: const Icon(
                                   Icons.emoji_transportation,
                                   size: 40,
@@ -541,14 +360,39 @@ class MyHomePage extends StatelessWidget {
                                 width: 60,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(100),
-                                    color: Color(0x000000).withOpacity(0.1)),
+                                    color: const Color(0x00000000)
+                                        .withOpacity(0.1)),
                                 child: const Icon(
                                   Icons.emoji_transportation,
                                   size: 40,
                                   color: Color.fromARGB(255, 42, 113, 44),
                                 ),
                               ),
-                              Text(
+                              const Text(
+                                "Shifting",
+                                style: TextStyle(fontWeight: FontWeight.w600),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Column(
+                            children: [
+                              Container(
+                                height: 60,
+                                width: 60,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(100),
+                                    color: const Color(0x00000000)
+                                        .withOpacity(0.1)),
+                                child: const Icon(
+                                  Icons.emoji_transportation,
+                                  size: 40,
+                                  color: Color.fromARGB(255, 42, 113, 44),
+                                ),
+                              ),
+                              const Text(
                                 "Shifting",
                                 style: TextStyle(fontWeight: FontWeight.w600),
                               ),
@@ -560,7 +404,7 @@ class MyHomePage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.all(10.0),
                           child: Text(
                             'Popular Services',
@@ -647,6 +491,110 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class SpecialForYouWidget extends StatelessWidget {
+  const SpecialForYouWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
+    return Container(
+      margin: const EdgeInsets.only(left: 30, right: 20, top: 0, bottom: 0),
+      width: size.width / 7 * 5,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        image: const DecorationImage(
+            image: AssetImage('Assets/h2.png'), fit: BoxFit.cover),
+      ),
+      child: Row(children: [
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius:
+                      BorderRadius.circular(10), // Set the radius to 10
+                ),
+                child: const Text('Limited Stock',
+                    style: TextStyle(
+                      color: Colors.black,
+                    )),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              const Text('Get Special Offer',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold)),
+              Container(
+                child: const Wrap(
+                  children: [
+                    Text('Up To ',
+                        style: TextStyle(color: Colors.white, fontSize: 20)),
+                    Text(
+                      "40",
+                      style: TextStyle(fontSize: 25, color: Colors.white),
+                    )
+                  ],
+                ),
+              ),
+              Row(
+                children: [
+                  Container(
+                    child: const Text(
+                      'sngdhgfjhhasg shfhd hdfj',
+                      style: TextStyle(fontSize: 10, color: Colors.white),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 90,
+                  ),
+                  Container(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Button action
+                      },
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.yellow),
+                        fixedSize:
+                            MaterialStateProperty.all<Size>(const Size(45, 15)),
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(Colors.black),
+                        textStyle: MaterialStateProperty.all<TextStyle>(
+                          const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                        padding: MaterialStateProperty.all<EdgeInsets>(
+                          const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                        ),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                        ),
+                      ),
+                      child: const Text('claimm'),
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
+        )
+      ]),
     );
   }
 }
